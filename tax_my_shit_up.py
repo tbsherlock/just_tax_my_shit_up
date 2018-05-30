@@ -205,7 +205,8 @@ def calculate_taxable_event(sell_event, buy_event):
     # Calculate taxable event parameters
     try:
         sell_event.buy_events.append(buy_event)
-        sell_event.cost_base_aud += (event_vol / sell_event.sell_volume) * buy_event.buy_price_aud * event_vol
+        #sell_event.cost_base_aud += (event_vol / sell_event.sell_volume) * buy_event.buy_price_aud * event_vol
+        sell_event.cost_base_aud += buy_event.buy_price_aud * event_vol
         sell_event.sell_unclaimed_volume = round(sell_event.sell_unclaimed_volume - event_vol, 4)
         sell_event.days_held = (sell_event.date - buy_event.date).days
         sell_event.calculate_profit()
